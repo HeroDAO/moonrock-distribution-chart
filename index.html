@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>title</title>
+  <style type="text/css">
+   #canvas-holder canvas {
+    width: 50vw !important;
+    height: 50vw !important;
+  }
+  </style>
+</head>
+<body>
+  
+<div id="canvas-holder">
+  <canvas id="chart-area"></canvas>
+</div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+
+  <script type="text/javascript">
+    var randomScalingFactor = function() {
+  return Math.round(Math.random() * 100);
+};
+
+var config = {
+  type: 'pie',
+  data: {
+    datasets: [{
+      data: [
+        53,
+        20,
+        15,
+        8,
+        4,
+        
+      ],
+      backgroundColor: [
+        '#8EB5F0',
+        '#3A79AB',
+        '#3265D3',
+        '#3D4273',
+        '#598BFE',
+      ],
+      label: 'Contratos'
+    }],
+    labels: [
+      'DAO Treasury [Reserve]',
+      'Mainnet Airdrop',
+      'Member Airdrop',
+      'DAO Treasury [Liquidity Incentives]',
+      'DAO Treasury [Artist Rewards]'
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      fullWidth: false,
+      onClick(e, {index}) {
+        alert(index);
+      }
+    },
+    layout: {
+      padding: 0
+    }
+  }
+};
+
+var chart;
+
+window.onload = function() {
+  var ctx = document.getElementById('chart-area').getContext('2d');
+  chart = new Chart(ctx, config);
+  chart.canvas.parentNode.style.width = '100vw';
+  chart.canvas.parentNode.style.height = '100vw';
+  window.myPie = chart;
+};
+  </script>
+</body>
+</html>
